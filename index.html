@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YADA - Kalkulator Siklus & Gejala Menstruasi</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-yada sticky-top">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center gap-2 fw-bold" href="#">
+    <!-- Mengganti logo-->
+                <img src="assets/images/loogo.jpeg" alt="" class="navbar-logo">
+                <span>YADA</span>
+            </a>
+            <span class="navbar-text text-white-50 small d-none d-sm-inline">
+                Alya & Elda Period Tracker
+            </span>
+        </div>
+    </nav>
+
+    <header class="py-4 text-white bg-yada-subtle text-center border-bottom border-danger-subtle">
+        <div class="container">
+            <h1 class="fw-bold mb-1 fs-3">Kalkulator Siklus Menstruasi YADA</h1>
+            <p class="mb-0 text-white-50 small">Solusi Praktis Hitung Datang Bulan & Cek Gejala Kesehatan</p>
+        </div>
+    </header>
+
+    <main class="container my-4 my-md-5" style="max-width: 900px;">
+        <div class="row g-4">
+            
+            <!-- BAGIAN 1: INPUT DATA SIKLUS (Atas) -->
+            <div class="col-12">
+                <div class="card card-custom border-0 shadow-sm">
+                    <div class="card-header bg-yada text-white py-3">
+                        <h5 class="card-title mb-0 fw-semibold fs-6">Input Data Siklus</h5>
+                    </div>
+                    <div class="card-body p-4">
+                        <form id="calculatorForm" onsubmit="return false;">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label for="lastPeriodDate" class="form-label fw-medium text-secondary small">Hari Pertama Haid Terakhir</label>
+                                    <input type="date" class="form-control form-control-lg border-2" id="lastPeriodDate" required>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="d-flex justify-content-between align-items-center mb-1">
+                                        <label for="cycleLength" class="form-label fw-medium text-secondary small mb-0">Rata-rata Panjang Siklus</label>
+                                        <span class="badge bg-yada-light text-yada fw-bold" id="cycleValue">28 Hari</span>
+                                    </div>
+                                    <input type="range" class="form-range" id="cycleLength" min="21" max="35" value="28">
+                                    <div class="d-flex justify-content-between text-muted small px-1">
+                                        <span>21 hr</span>
+                                        <span>28 hr</span>
+                                        <span>35 hr</span>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12 mt-3">
+                                    <div class="d-flex justify-content-between align-items-center mb-1">
+                                        <label for="periodDuration" class="form-label fw-medium text-secondary small mb-0">Lama Menstruasi</label>
+                                        <span class="badge bg-yada-light text-yada fw-bold" id="durationValue">5 Hari</span>
+                                    </div>
+                                    <input type="range" class="form-range" id="periodDuration" min="3" max="10" value="5">
+                                    <div class="d-flex justify-content-between text-muted small px-1">
+                                        <span>3 hr</span>
+                                        <span>7 hr</span>
+                                        <span>10 hr</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button type="button" id="btnCalculate" class="btn btn-yada btn-lg w-100 fw-semibold shadow-sm mt-4">
+                                Hitung Prediksi
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BAGIAN 2: RINGKASAN SIKLUS & JADWAL (Tengah) -->
+            <div class="col-12">
+                <div class="card card-custom border-0 shadow-sm">
+                    <div class="card-body p-4">
+                        <h5 class="fw-bold text-yada mb-3 border-bottom pb-2">Ringkasan Siklus Anda</h5>
+                        
+                        <div class="row g-3">
+                            <div class="col-6 col-md-3">
+                                <div class="stat-box p-3 rounded-3 text-center h-100">
+                                    <span class="d-block text-muted small fw-medium">Haid Berikutnya</span>
+                                    <strong id="nextPeriodText" class="fs-6 text-yada d-block mt-1">-</strong>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <div class="stat-box p-3 rounded-3 text-center h-100">
+                                    <span class="d-block text-muted small fw-medium">Hitung Mundur</span>
+                                    <strong id="countdownText" class="fs-6 text-yada d-block mt-1">-</strong>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <div class="stat-box p-3 rounded-3 text-center h-100">
+                                    <span class="d-block text-muted small fw-medium">Perkiraan Ovulasi</span>
+                                    <strong id="ovulationText" class="fs-6 text-yada d-block mt-1">-</strong>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <div class="stat-box p-3 rounded-3 text-center h-100">
+                                    <span class="d-block text-muted small fw-medium">Masa Subur</span>
+                                    <strong id="fertileWindowText" class="fs-6 text-yada d-block mt-1">-</strong>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-4">
+                            <h6 class="fw-bold text-secondary mb-2 small">Jadwal 3 Siklus Mendatang</h6>
+                            <div class="table-responsive">
+                                <table class="table table-bordered align-middle text-center mb-0 small">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th>Siklus Ke-</th>
+                                            <th>Estimasi Tanggal Haid</th>
+                                            <th>Estimasi Masa Subur</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="futureCyclesBody">
+                                        <tr>
+                                            <td colspan="3" class="text-muted py-3">Masukkan data di atas untuk melihat jadwal.</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BAGIAN 3: PEMERIKSA GEJALA FISIK (Bawah) -->
+            <div class="col-12">
+                <div class="card card-custom border-0 shadow-sm">
+                    <div class="card-header bg-white border-bottom py-3">
+                        <h5 class="card-title mb-0 fw-bold text-yada fs-6">Pemeriksa Gejala Fisik & Solusi Penanganan</h5>
+                    </div>
+                    <div class="card-body p-4">
+                        <p class="text-muted small mb-3">Pilih atau ketik gejala yang sedang kamu rasakan untuk mengetahui penyebab biologis dan penanganan yang disarankan:</p>
+                        
+                        <div class="mb-3">
+                            <input type="text" id="symptomSearch" class="form-control" placeholder="Ketik gejala (contoh: kram, pusing, jerawat, mood)...">
+                        </div>
+
+                        <div class="d-flex flex-wrap gap-2 mb-4" id="symptomChips">
+                            <button class="btn btn-outline-yada btn-sm rounded-pill chip-btn active" data-symptom="kram">Kram Perut</button>
+                            <button class="btn btn-outline-yada btn-sm rounded-pill chip-btn" data-symptom="payudara">Nyeri Payudara</button>
+                            <button class="btn btn-outline-yada btn-sm rounded-pill chip-btn" data-symptom="mood">Mood Swings</button>
+                            <button class="btn btn-outline-yada btn-sm rounded-pill chip-btn" data-symptom="kembung">Kembung / Begah</button>
+                            <button class="btn btn-outline-yada btn-sm rounded-pill chip-btn" data-symptom="pusing">Sakit Kepala / Pusing</button>
+                            <button class="btn btn-outline-yada btn-sm rounded-pill chip-btn" data-symptom="lelah">Lelah & Badan Pegal</button>
+                            <button class="btn btn-outline-yada btn-sm rounded-pill chip-btn" data-symptom="jerawat">Jerawat Hormonal</button>
+                            <button class="btn btn-outline-yada btn-sm rounded-pill chip-btn" data-symptom="flek">Flek Cokelat</button>
+                        </div>
+
+                        <div class="bg-light p-3 rounded-3 border" id="symptomResultBox">
+                            <h6 class="fw-bold text-yada mb-2" id="resultSymptomTitle">Kram Perut (Dismenore)</h6>
+                            <div class="mb-2">
+                                <span class="badge bg-secondary mb-1">Penyebab Biologis</span>
+                                <p class="text-secondary small mb-0" id="resultSymptomCause">Peningkatan hormon prostaglandin yang membuat otot rahim berkontraksi untuk meluruhkan dinding rahim.</p>
+                            </div>
+                            <div>
+                                <span class="badge bg-success mb-1">Solusi & Penanganan</span>
+                                <p class="text-secondary small mb-0" id="resultSymptomSolution">Kompres hangat perut bagian bawah, minum air hangat, istirahat cukup, dan lakukan peregangan ringan.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="bg-yada text-white py-4 mt-5">
+        <div class="container text-center">
+            <p class="mb-1 fw-semibold">YADA Period Tracker &copy; 2026</p>
+            <p class="mb-0 text-white-50 extra-small">Dikembangkan oleh Alya & Elda | Dibuat untuk tujuan edukasi & kesehatan reproduksi wanita.</p>
+        </div>
+    </footer>
+
+    <script src="assets/js/script.js"></script>
+</body>
+</html>
