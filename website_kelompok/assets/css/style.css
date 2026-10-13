@@ -1,0 +1,94 @@
+:root {
+    --yada-main: #d9777f;
+    --yada-hover: #b85b63;
+    --yada-light: #fbe8e7;
+    --yada-bg: #fcf4f4;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #3b2e35;
+    
+    /* --- BAGIAN INI MENGGANTI BG--- */
+    background-image: url('../images/beground pink.jpeg');
+    background-size: cover;          
+    background-repeat: no-repeat;    
+    background-position: center;     
+    background-attachment: fixed;    
+}
+/* Aturan tampilan untuk logo di navbar */
+.navbar-logo {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%; 
+    object-fit: cover; 
+    border: 2px solid #d9777f; 
+}
+
+
+.bg-yada {
+    background-color: var(--yada-main) !important;
+}
+
+.bg-yada-subtle {
+    background-color: #d88ca0 !important;
+}
+
+.text-yada {
+    color: var(--yada-main) !important;
+}
+
+.bg-yada-light {
+    background-color: var(--yada-light) !important;
+}
+
+.btn-yada {
+    background-color: var(--yada-main);
+    color: #ffffff;
+    border: none;
+}
+
+.btn-yada:hover, .btn-yada:focus {
+    background-color: var(--yada-hover);
+    color: #ffffff;
+}
+
+.btn-outline-yada {
+    color: var(--yada-main);
+    border-color: var(--yada-main);
+}
+
+.btn-outline-yada:hover, .btn-outline-yada.active {
+    background-color: var(--yada-main);
+    color: #ffffff;
+    border-color: var(--yada-main);
+}
+
+.brand-logo {
+    width: 32px;
+    height: 32px;
+    font-size: 16px;
+}
+
+
+.card-custom {
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.stat-box {
+    background-color: var(--yada-bg);
+    border: 1px solid var(--yada-light);
+}
+
+.form-range::-webkit-slider-thumb {
+    background: var(--yada-main);
+}
+
+.form-range::-moz-range-thumb {
+    background: var(--yada-main);
+}
+
+.extra-small {
+    font-size: 0.75rem;
+}
